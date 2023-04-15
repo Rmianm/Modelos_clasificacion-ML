@@ -25,6 +25,14 @@ get_dummies utiliza **One-Hot Encoding**, es una técnica de transformación de 
 
 LabelEncoder() al contrario de get_dummies puede ser un poco confuso para el modelo porque digamos que tenemos 3 categorías y a cada una le asigna un valor de 1, 2, 3. Esto le puede sonar al modelo que las variables tienen importancia en función del tamaño u orden de sus números.
 
+Si tu target o variable de salida es una variable categórica y necesitas que sea una variable binaria, puedes hacerlo mediante un mapeado con el método **.map()**.
+
+Hagamos de cuenta que nuestra variable de salida se llama `Enfermedad` y está en nuestro dataset `datos`:
+
+datos['Enfermedad'] = datos['Enfermedad'].map({'SI': 1, 'NO': 0})
+
+Así nuestra variable quedaría numérica y binaria para que nuestro modelo pueda trabajar más facilmente ya que muchos de estos algoritmos están optimizados para trabajar con variables de este tipo.
+
 Ahora bien, resulta que hay variables con valores nulos, esto podemos averiguarlo con un simple código `train_df.isnull().any()`, es importante saber que para implementar modelos de Machine learning las variables estén completas y no tengan valores faltantes por las siguientes razones.
 
 1. La precisión del modelo se verá afectada: si hay muchos valores nulos en los datos, el modelo puede tener dificultades para encontrar patrones y relaciones entre las variables. Esto puede afectar negativamente la precisión del modelo y hacer que produzca predicciones inexactas.
