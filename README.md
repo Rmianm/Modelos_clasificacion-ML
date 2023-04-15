@@ -76,3 +76,7 @@ Pclass podría tener los posibles valores [0.82, -1.15, -0.33]
 Entonces el nodo se pregunta ¿Qué pasajeros tienen una Pclass menor o igual a 0.229?, bueno si miramos los posibles valores hay dos clases que entrarían.
 el gini nos dice que es de 0.383, la impureza no es baja pero es considerada es decir que hay más de una clase, en efecto ya lo habíamos mirado.
 me dice que hay 314 pasajeros que cumplen la condición Pclass, y de esos 314 hay 81 que no sobrevivieron mientras que 233 sí lo hicieron, esta información nos lo proporciona el value = [81,233].
+
+Bien, cuando se evaluó la condición de Pclass dio verdadera para 314 pasajeros, así que estos se irán por la rama izquiera a evaluar una nueva condición y siguir dividiéndose mediante los nodos hijos, mientras para los que la condición fue falsa seguirán la rama derecha.
+
+Espero haber sido de ayuda, lo intenté explicar de una manera no tan técnica, si quieres retroalimentar mi explicación no dudes en escribirme, estaré atento.
