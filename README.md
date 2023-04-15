@@ -12,6 +12,7 @@ encoder_sex = label_encoder.fit_transform(train_df['Sex'])
 ```
 
 Si estás empezando, puedes hacerlo de una menera un poco más primitiva, aunque podrás tener inconvenientes si tiene muchas categorías
+
 ```sh
 test_df['Sex'].replace('male',1,inplace=True)
 test_df['Sex'].replace('female',0,inplace=True)
@@ -49,4 +50,29 @@ Se pueden llenar los datos con la media o la mediana, pero ten en cuenta que pue
 
 Otra duelo para entender es la imágen de un Árbol de decisión, ¿Gini, samples, value, class?. No soy un experto en el tema pero espero mi explicación al menos despeje tus dudas o sea una buena partida para entenderlo.
 
+Empecemos por hablar de cada parte de un árbol.
 
+* Nodo Raiz: Es el primer rectángulo que aparece, no tiene un nodo padre, y de ahí se inicia a desprender nodos hijos.
+
+* Hojas: Son los últimos nodos del árbol, cada hoja representa una clasificación o resultado final, es decir una decisión tomada por el árbol.
+
+* Gini: el índice Gini es una medida de la impureza de un nodo, la impureza se refiere a cuán mezcladas están las clases en un conjunto de datos. Si todos los ejemplos de una hoja pertenecen a la misma clase, entonces se dice que la hoja es "pura". Por otro lado, si hay una mezcla de clases en una hoja, entonces se dice que la hoja es "impura". Cuanto más cercano a cero sea el índice Gini, más pura será la hoja y mejor será la separación de clases, Si el índice Gini fuera de 0.5 en un nodo, esto indicaría que hay una distribución uniforme de los ejemplos entre las clases posibles.
+
+* Samples: Ejemplos que cumplen la condición inicial.
+
+* Value: el parámetro "value" en un nodo de un árbol de decisión representa la distribución de los valores de la variable objetivo (la variable que se quiere predecir) en el conjunto de ejemplos que están asignados a ese nodo.
+
+Supongamos que tenemos un nodo del dataset Titanic con los siguientes valores:
+
+```sh
+Pclass <= 0.229
+gini = 0.383
+samples = 314
+Value = [81,233]
+```
+
+Pclass podría tener los posibles valores [0.82, -1.15, -0.33]
+
+Entonces el nodo se pregunta ¿Qué pasajeros tienen una Pclass menor o igual a 0.229?, bueno si miramos los posibles valores hay dos clases que entrarían.
+el gini nos dice que es de 0.383, la impureza no es baja pero es considerada es decir que hay más de una clase, en efecto ya lo habíamos mirado.
+me dice que hay 314 pasajeros que cumplen la condición Pclass, y de esos 314 hay 81 que no sobrevivieron mientras que 233 sí lo hicieron, esta información nos lo proporciona el value = [81,233].
