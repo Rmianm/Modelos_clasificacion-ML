@@ -45,3 +45,8 @@ train_df['Age'] = train_df['Age'].fillna(train_df['Age'].median())
 
 Se pueden llenar los datos con la media o la mediana, pero ten en cuenta que pueden haber outliers o valores atípicos, entonces la media podría verse afectada por estos y no representar adecuadamente la tendencia central de los datos, y si los valores núlos se completan de manera incorrecta estos pueden comprometer aún más la calidad de los datos y llevar a conclusiones erróneas.
 
+***Árbol de Decisión gráfico***
+
+Otra duelo para entender es la imágen de un Árbol de decisión, ¿Gini, samples, value, class?. No soy un experto en el tema pero espero mi explicación al menos despeje tus dudas o sea una buena partida para entenderlo.
+
+
