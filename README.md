@@ -1,4 +1,4 @@
-# Modelos de clasificacion
+# Modelos de clasificación
 
 En los archivos explico la mayoría de las líneas de código, sin embargo aquí te explicaré de una manera más detallada.
 
