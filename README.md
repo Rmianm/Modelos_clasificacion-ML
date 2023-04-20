@@ -83,7 +83,7 @@ Bien, cuando se evaluó la condición de Pclass dio verdadera para 314 pasajeros
 
 A muchos nos confunde una matriz de confusión, si buscamos en internet nos puede salir diferentes interpretaciones de la matriz, para algunas el eje de Y son los valores reales, para otras personas los valores de predicción, lo mismo con el eje X, entre otras confusiones, así que presta atención a la explicación.
 
-Supongamos que tenemos la siguiente matriz, que de hecho sale en uno de los ejercicios de Pacientes que he subido.
+Supongamos que tenemos la siguiente matriz, que de hecho sale en uno de los ejercicios de Pacientes que he subido en el repositorio de Regresión Logística.
 
 En primer lugar debemos invocar la libreria con el submódulo, from sklearn.metrics import confusion_matrix`.
 Posterior a eso hacemos la predicción e invocamos la función.
