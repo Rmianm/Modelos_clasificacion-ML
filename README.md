@@ -79,4 +79,98 @@ me dice que hay 314 pasajeros que cumplen la condición Pclass, y de esos 314 ha
 
 Bien, cuando se evaluó la condición de Pclass dio verdadera para 314 pasajeros, así que estos se irán por la rama izquiera a evaluar una nueva condición y siguir dividiéndose mediante los nodos hijos, mientras para los que la condición fue falsa seguirán la rama derecha.
 
+***Matriz de Confusión***
+
+A muchos nos confunde una matriz de confusión, si buscamos en internet nos puede salir diferentes interpretaciones de la matriz, para algunas el eje de Y son los valores reales, para otras personas los valores de predicción, lo mismo con el eje X, entre otras confusiones, así que presta atención a la explicación.
+
+Supongamos que tenemos la siguiente matriz, que de hecho sale en uno de los ejercicios de Pacientes que he subido.
+
+En primer lugar debemos invocar la libreria con el submódulo, from sklearn.metrics import confusion_matrix`.
+Posterior a eso hacemos la predicción e invocamos la función.
+
+y_pred = arbol_enfermedad.predict(X_test)
+matriz_de_confusion = confusion_matrix(Y_test,y_pred)
+
+
+Obteniendo la siguiente matriz:
+
+```sh
+array([[171,   2],
+       [ 22,  52]])
+```
+Es la matriz por defecto que resulta, y la podemos traducir a lo siguiente:
+
+
+<table>
+    <tr>
+        <th></th>
+        <th>Predicción - (0) </th>
+        <th>Predicción + (1)-</th>
+    </tr>
+    <tr>
+        <td>Valor actual - (0)</td>
+        <td>171</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>Valor actual + (1)</td>
+        <td>22</td>
+        <td>52</td>
+    </tr>
+</table>
+
+El valor 171 hace referencia a los **TN**, valores que la predicción arrojó negativos y efectivamente los valores verdaderos eran negativos.
+
+El valor 2 **FP**, valores que se predijo como positivos pero en realidad no lo eran.
+
+El 22 nos habla de los **FN**, se predijeron como Negativos pero los valores verdaderos no lo eran.
+
+Por último el 52 son los **TP**, valores que salieron como positivos y en realidad son positivos.
+
+En nuestro contexto, los positivos *(1)* son los enfermos y los negativos *(0)* los No enfermos.
+
+Pero espera, ¿Es posible hacerlo de otra manera?, claro que sí con simple cambio, si agregamos **labels=[1,0]** a `matriz_de_confusion = confusion_matrix(Y_test,y_pred)`
+
+Quedando: 
+
+```sh
+matriz_de_confusion = confusion_matrix(Y_test,y_pred, labels=[1,0])
+```
+Se invierte un poco las cosas, practicamente dónde iban los positivos ahora son negativos y viceversa, los ejes X y Y siguien iguales.
+
+```sh
+array([[ 52,  22],
+       [  2, 171]])
+```
+
+A la hora de representarlo en la gráfica también debes hacer una pequeña modificación:
+
+```sh
+fig, ax = plt.subplots(figsize=(4,4))
+...
+tick_labels = [1,0]
+ax.set_xticklabels(tick_labels)
+ax.set_yticklabels(tick_labels)
+```
+Finalmente obteniendo lo siguiente:
+
+<table>
+    <tr>
+        <th></th>
+        <th>Predicción + (1) </th>
+        <th>Predicción - (0)</th>
+    </tr>
+    <tr>
+        <td>Valor actual + (1)</td>
+        <td>171</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>Valor actual - (0)</td>
+        <td>22</td>
+        <td>52</td>
+    </tr>
+</table>
+
+
 Espero haber sido de ayuda, lo intenté explicar de una manera no tan técnica, si quieres retroalimentar mi explicación no dudes en escribirme, estaré atento.
